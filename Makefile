@@ -82,6 +82,10 @@ deploy-local:
 dev: deploy-init deploy-css deploy-rnnoise-binary deploy-lib-jitsi-meet deploy-libflac
 	$(WEBPACK_DEV_SERVER)
 
+  
+run: 
+	$(WEBPACK_DEV_SERVER) --live-reload
+
 source-package:
 	mkdir -p source_package/jitsi-meet/css && \
 	cp -r *.js *.html connection_optimization favicon.ico fonts images libs static sounds LICENSE lang source_package/jitsi-meet && \
