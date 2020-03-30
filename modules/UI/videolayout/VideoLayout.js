@@ -18,6 +18,10 @@ import { VIDEO_CONTAINER_TYPE } from './VideoContainer';
 
 import LocalVideo from './LocalVideo';
 
+import Sortable from 'sortablejs';
+
+import { sendOrderChangedCommand, isParticipantModerator } from '../../../react/features/base/participants/changeOrder';
+
 const remoteVideos = {};
 let localVideoThumbnail = null;
 
@@ -296,6 +300,19 @@ const VideoLayout = {
 
         this.updateMutedForNoTracks(id, 'audio');
         this.updateMutedForNoTracks(id, 'video');
+
+        /**
+         * sort participate
+         */
+        if (isParticipantModerator()) {
+            Sortable.create(filmstripRemoteVideosContainer, {
+                animation: 150,
+                onChange: function(/**Event*/evt) {
+                    sendOrderChangedCommand();
+                }
+              });
+        }
+        
     },
 
     /**
