@@ -63,3 +63,5 @@ export const PARTICIPANT_ROLE = {
     NONE: 'none',
     PARTICIPANT: 'participant'
 };
+
+export const PARTICIPANTS_ORDER_CHANGED = 'PARTICIPANTS_ORDER_CHANGED';

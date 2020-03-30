@@ -126,6 +126,9 @@ import { endpointMessageReceived } from './react/features/subtitles';
 import { createRnnoiseProcessorPromise } from './react/features/rnnoise';
 import { toggleScreenshotCaptureEffect } from './react/features/screenshot-capture';
 
+import { PARTICIPANTS_ORDER_CHANGED } from './react/features/base/participants/constants';
+import { changeParticipantOrderAfterHostChanged } from './react/features/base/participants/changeOrder';
+
 const logger = require('jitsi-meet-logger').getLogger(__filename);
 
 const eventEmitter = new EventEmitter();
@@ -2186,6 +2189,11 @@ export default {
                         id: from,
                         avatarID: data.value
                     }));
+            });
+
+        room.addCommandListener(PARTICIPANTS_ORDER_CHANGED,
+            (data, from) => {
+                changeParticipantOrderAfterHostChanged(data.attributes.newOrder)
             });
 
         APP.UI.addListener(UIEvents.NICKNAME_CHANGED,
