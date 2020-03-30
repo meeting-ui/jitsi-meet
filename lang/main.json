@@ -198,6 +198,8 @@
         "liveStreamingDisabledTooltip": "Start live stream disabled.",
         "lockMessage": "Failed to lock the conference.",
         "lockRoom": "Add meeting $t(lockRoomPasswordUppercase)",
+        "lockConference": "Lock conference",
+	"unlockConference": "Unlock conference",
         "lockTitle": "Lock failed",
         "logoutQuestion": "Are you sure you want to logout and stop the conference?",
         "logoutTitle": "Logout",
