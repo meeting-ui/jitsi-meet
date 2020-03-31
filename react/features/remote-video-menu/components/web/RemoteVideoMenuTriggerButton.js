@@ -123,15 +123,15 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
 
         return (
             <Popover
-                content={content}
-                onPopoverOpen={this._onShowRemoteMenu}
-                position={this.props.menuPosition}>
+                content = { content }
+                onPopoverOpen = { this._onShowRemoteMenu }
+                position = { this.props.menuPosition }>
                 <span
-                    className='popover-trigger remote-video-menu-trigger'>
+                    className = 'popover-trigger remote-video-menu-trigger'>
                     <Icon
-                        size='1em'
-                        src={IconMenuThumb}
-                        title='Remote user controls' />
+                        size = '1em'
+                        src = { IconMenuThumb }
+                        title = 'Remote user controls' />
                 </span>
             </Popover>
         );
@@ -172,19 +172,19 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
         if (_isModerator) {
             buttons.push(
                 <MuteButton
-                    isAudioMuted={isAudioMuted}
-                    key='mute'
-                    participantID={participantID} />
+                    isAudioMuted = { isAudioMuted }
+                    key = 'mute'
+                    participantID = { participantID } />
             );
             buttons.push(
                 <MuteEveryoneElseButton
-                    key='mute-others'
-                    participantID={participantID} />
+                    key = 'mute-others'
+                    participantID = { participantID } />
             );
             buttons.push(
                 <KickButton
-                    key='kick'
-                    participantID={participantID} />
+                    key = 'kick'
+                    participantID = { participantID } />
             );
 
             buttons.push(
@@ -197,32 +197,32 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
         if (remoteControlState) {
             buttons.push(
                 <RemoteControlButton
-                    key='remote-control'
-                    onClick={onRemoteControlToggle}
-                    participantID={participantID}
-                    remoteControlState={remoteControlState} />
+                    key = 'remote-control'
+                    onClick = { onRemoteControlToggle }
+                    participantID = { participantID }
+                    remoteControlState = { remoteControlState } />
             );
         }
 
         buttons.push(
             <PrivateMessageMenuButton
-                key='privateMessage'
-                participantID={participantID} />
+                key = 'privateMessage'
+                participantID = { participantID } />
         );
 
         if (onVolumeChange) {
             buttons.push(
                 <VolumeSlider
-                    initialValue={initialVolumeValue}
-                    key='volume-slider'
-                    onChange={onVolumeChange} />
+                    initialValue = { initialVolumeValue }
+                    key = 'volume-slider'
+                    onChange = { onVolumeChange } />
             );
         }
 
         if (buttons.length > 0) {
             return (
-                <RemoteVideoMenu id={participantID}>
-                    {buttons}
+                <RemoteVideoMenu id = { participantID }>
+                    { buttons }
                 </RemoteVideoMenu>
             );
         }
