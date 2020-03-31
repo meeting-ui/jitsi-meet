@@ -14,7 +14,8 @@ import {
     PrivateMessageMenuButton,
     RemoteControlButton,
     RemoteVideoMenu,
-    VolumeSlider
+    VolumeSlider,
+    SetHostButton
 } from './';
 
 declare var $: Object;
@@ -184,6 +185,12 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
                 <KickButton
                     key = 'kick'
                     participantID = { participantID } />
+            );
+
+            buttons.push(
+                <SetHostButton
+                    key='set-host'
+                    participantID={participantID} />
             );
         }
 
