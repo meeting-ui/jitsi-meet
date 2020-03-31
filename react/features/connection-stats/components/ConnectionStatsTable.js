@@ -241,6 +241,7 @@ class ConnectionStatsTable extends Component<Props> {
     _renderE2eRtt() {
         const { e2eRtt, t } = this.props;
         const str = e2eRtt ? `${e2eRtt.toFixed(0)}ms` : 'N/A';
+        console.log('_renderE2eRtt -------------')
 
         return (
             <tr>
@@ -454,6 +455,7 @@ class ConnectionStatsTable extends Component<Props> {
      * @returns {ReactElement[]}
      */
     _renderTransport() {
+        console.log('_renderTransport ----------')
         const { t, transport } = this.props;
 
         if (!transport || transport.length === 0) {
@@ -579,7 +581,7 @@ class ConnectionStatsTable extends Component<Props> {
      */
     _renderTransportTableRow(config: Object) {
         const { additionalData, data, key, label } = config;
-
+        console.log('_renderTransportTableRow', data)
         return (
             <tr key = { key }>
                 <td>

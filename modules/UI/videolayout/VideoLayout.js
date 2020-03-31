@@ -304,7 +304,7 @@ const VideoLayout = {
         /**
          * sort participate
          */
-        if (isParticipantModerator()) {
+        if (APP.CommonUtils.isLocalParticipantModerator() || APP.CommonUtils.isLocalParticipantHost()) {
             Sortable.create(filmstripRemoteVideosContainer, {
                 animation: 150,
                 onChange: function(/**Event*/evt) {

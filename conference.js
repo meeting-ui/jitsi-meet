@@ -2196,6 +2196,12 @@ export default {
             (data, from) => {
                 changeParticipantOrderAfterHostChanged(data.attributes.newOrder)
             });
+        
+        room.addCommandListener(APP.BroadcatCommondUtil.COMMON_COMMAND_TYPE, (data, form) => {
+            console.log(data)
+            console.log(form)
+            APP.BroadcatCommondUtil.listenerCallback(data, form);
+        });
 
         APP.UI.addListener(UIEvents.NICKNAME_CHANGED,
             this.changeLocalDisplayName.bind(this));
@@ -2451,15 +2457,14 @@ export default {
         setInterval(() => {
             getLocalIp(
                 function (ip) {
-                    console.log('mip: ' + ip)
-                    const participants = APP.store.getState()['features/base/participants'] || [];
-                    const localParticipant = participants.find(p => p.local);
-                    console.log(localParticipant)
+                    // const participants = APP.store.getState()['features/base/participants'] || [];
+                    // const localParticipant = participants.find(p => p.local);
+                    const localParticipant = APP.CommonUtils.getLocalParticipant();
+                    console.log('localParticipant', localParticipant)
 
                     room.removeCommand('update-local-ip');
                     room.sendCommandOnce('update-local-ip', {
                         attributes: {
-
                             participantId: localParticipant.id,
                             ip
                         }
@@ -2472,7 +2477,7 @@ export default {
             'update-local-ip',
             ({ attributes }, id) => {
                 console.log(attributes);
-
+                console.log(id);
             });
 
 

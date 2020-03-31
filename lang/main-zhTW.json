@@ -405,6 +405,9 @@
         "stop": "停止錄影",
         "yes": "是的"
     },
+    "sortIps": {
+        "dialogTitle": "按照 IP 排序"
+    },
     "lockRoomPassword": "密碼",
     "lockRoomPasswordUppercase": "密碼",
     "me": "我",

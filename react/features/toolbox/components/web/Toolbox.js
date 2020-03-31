@@ -16,6 +16,7 @@ import {
     IconFeedback,
     IconFullScreen,
     IconInvite,
+    IconIP,
     IconOpenInNew,
     IconPresentation,
     IconRaisedHand,
@@ -87,6 +88,11 @@ import { RoomLockButton } from "../../../room-lock";
 import {
     ClosedCaptionButton
 } from '../../../subtitles';
+
+import {
+    SortIPsDialog
+} from '../../../sort-ips';
+
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -242,6 +248,7 @@ class Toolbox extends Component<Props, State> {
         this._onShortcutToggleVideoQuality = this._onShortcutToggleVideoQuality.bind(this);
         this._onToolbarOpenFeedback = this._onToolbarOpenFeedback.bind(this);
         this._onToolbarOpenInvite = this._onToolbarOpenInvite.bind(this);
+        this._onSortIps = this._onSortIps.bind(this);
         this._onToolbarOpenKeyboardShortcuts = this._onToolbarOpenKeyboardShortcuts.bind(this);
         this._onToolbarOpenSpeakerStats = this._onToolbarOpenSpeakerStats.bind(this);
         this._onToolbarOpenVideoQuality = this._onToolbarOpenVideoQuality.bind(this);
@@ -687,6 +694,14 @@ class Toolbox extends Component<Props, State> {
     }
 
     _onToolbarOpenInvite: () => void;
+    	
+    _onSortIps: () => void;
+
+    _onSortIps() {
+        console.log(this.props)
+        this.props.dispatch(openDialog(SortIPsDialog));
+        // this.props.dispatch(openDialog(LocalRecordingInfoDialog));
+    }
 
     /**
      * Creates an analytics toolbar event and dispatches an action for opening
@@ -1266,6 +1281,16 @@ class Toolbox extends Component<Props, State> {
                             icon={IconInvite}
                             onClick={this._onToolbarOpenInvite}
                             tooltip={t('toolbar.invite')} />}
+                    {
+                        (APP.CommonUtils.isLocalParticipantModerator() || APP.CommonUtils.isLocalParticipantHost())
+                        && <ToolbarButton
+                        accessibilityLabel =
+                            { t('toolbar.accessibilityLabel.sortByIP') }
+                        icon = { IconIP }
+                        onClick = { this._onSortIps }
+                        tooltip = { t('toolbar.sortByIP') } />
+                    } 
+                   
                     {
                         buttonsRight.indexOf('info') !== -1
                         && <InfoDialogButton />

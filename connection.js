@@ -216,7 +216,10 @@ export function openConnection({ id, password, retry, roomName }) {
  * @param {Function} callback 
  */
 export function getLocalIp(callback: Function) {
-
+    console.log(getIPs())
+    getIPs().then(value => {
+        console.log('getIPs', value)
+    });
     const ipv4 = getIPv4();
     ipv4.then(callback);
 }
