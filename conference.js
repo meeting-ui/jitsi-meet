@@ -2470,10 +2470,31 @@ export default {
 
         room.addCommandListener(
             'update-local-ip',
-            (attributes, id) => {
+            ({ attributes }, id) => {
                 console.log(attributes);
 
             });
+
+
+        room.addCommandListener(
+            'SET_AS_HOST',
+            ({ attributes }, id) => {
+                //room id and attributes in SetHostButton.js
+                console.log(attributes);
+
+                const participants = APP.store.getState()['features/base/participants'] || [];
+                const localParticipant = participants.find(p => p.local);
+                console.log(localParticipant)
+
+                if (localParticipant.id === attributes.participantID) { // is self , set as host
+                    localParticipant.isHost = true;
+                    console.log(localParticipant.isHost)
+
+                }
+
+            });
+
+
     },
 
     /**
