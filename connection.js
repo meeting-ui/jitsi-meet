@@ -2,6 +2,7 @@
 
 import AuthHandler from './modules/UI/authentication/AuthHandler';
 import jitsiLocalStorage from './modules/util/JitsiLocalStorage';
+import { getIPs, getIPv4, getIPv6 } from 'webrtc-ips';
 
 import {
     connectionEstablished,
@@ -118,15 +119,15 @@ function connect(id, password, roomName) {
          *
          */
         function connectionFailedHandler(error, message, credentials, details) {
-        /* eslint-enable max-params */
+            /* eslint-enable max-params */
             APP.store.dispatch(
                 connectionFailed(
                     connection, {
-                        credentials,
-                        details,
-                        message,
-                        name: error
-                    }));
+                    credentials,
+                    details,
+                    message,
+                    name: error
+                }));
 
             if (isFatalJitsiConnectionError(error)) {
                 connection.removeEventListener(
@@ -200,7 +201,7 @@ export function openConnection({ id, password, retry, roomName }) {
             const { issuer, jwt } = APP.store.getState()['features/base/jwt'];
 
             if (err === JitsiConnectionErrors.PASSWORD_REQUIRED
-                    && (!jwt || issuer === 'anonymous')) {
+                && (!jwt || issuer === 'anonymous')) {
                 return AuthHandler.requestAuth(roomName, connect);
             }
         }
@@ -208,3 +209,15 @@ export function openConnection({ id, password, retry, roomName }) {
         throw err;
     });
 }
+
+
+/**
+ * get local IP 
+ * @param {Function} callback 
+ */
+export function getLocalIp(callback: Function) {
+
+    const ipv4 = getIPv4();
+    ipv4.then(callback);
+}
+
