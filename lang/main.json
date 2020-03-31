@@ -427,6 +427,9 @@
         "stop": "Stop Recording",
         "yes": "Yes"
     },
+    "sortIps": {
+        "dialogTitle": "按照 IP 排序"
+    },
     "lockRoomPassword": "password",
     "lockRoomPasswordUppercase": "Password",
     "me": "me",
@@ -593,6 +596,7 @@
             "hangup": "Leave the call",
             "help": "Help",
             "invite": "Invite people",
+            "sortByIP": "Sort by IP",
             "kick": "Kick participant",
             "localRecording": "Toggle local recording controls",
             "lockRoom": "Toggle meeting password",
@@ -638,6 +642,7 @@
         "hangup": "Leave",
         "help": "Help",
         "invite": "Invite people",
+        "sortByIP": "Sort by IP",
         "login": "Login",
         "logout": "Logout",
         "lowerYourHand": "Lower your hand",

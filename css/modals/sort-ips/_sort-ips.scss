@@ -1,0 +1,32 @@
+.ip-item {
+    background-color: #fafdfa;
+    margin-bottom: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    text-align: center;
+    color: #000;
+}
+
+.sort-container {
+    margin-top: 7px;
+}
+
+.ip-button {
+    font-size: .8em;
+    position: relative;
+    display: inline-block;
+    // margin: 0 0 5px 0;
+    padding: 5px 3px;
+    width: 77px;
+    background: #f2f2f2;
+    color: #202b3d;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 15px;
+    cursor: pointer;
+}
+
+.ip-delete-icon {
+    float: right;
+}
