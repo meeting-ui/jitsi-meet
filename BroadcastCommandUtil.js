@@ -48,8 +48,8 @@ BroadcatCommondUtil.sendCommandOnce = function(commandType, data, hostAuthNeed =
  * }
  * @param {*} hostAuthNeed do I need be host to send the command
  */
-BroadcatCommondUtil.sendCommand = function(commandType, data, callback, hostAuthNeed = false) {
-    BroadcatCommondUtil.basicSendCommand(false, commandType, data, callback, hostAuthNeed);
+BroadcatCommondUtil.sendCommand = function(commandType, data, hostAuthNeed = false) {
+    BroadcatCommondUtil.basicSendCommand(false, commandType, data, hostAuthNeed);
 }
 
 /**
@@ -95,12 +95,13 @@ BroadcatCommondUtil.basicSendCommand = function(once, commandType, data, hostAut
 
 
 BroadcatCommondUtil.listenerCallback = function(data, participantId) {
-    console.log('data', data)
-    console.log('participantId', participantId)
 
     // call back for react\features\sort-ips\components\SortIPsDialog.js
     if (data.attributes.commandType === 'sortedIps') {
-        localStorage.setItem('jitsi_user_ips', data.attributes.ipsStr);
+        const localParticipateId = APP.CommonUtils.getLocalParticipantId();
+        if (localParticipateId !== participantId) {
+            localStorage.setItem('jitsi_user_ips', data.attributes.ipsStr);
+        }
     }
 }
 

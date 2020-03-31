@@ -2457,8 +2457,9 @@ export default {
         setInterval(() => {
             getLocalIp(
                 function (ip) {
-                    const participants = APP.store.getState()['features/base/participants'] || [];
-                    const localParticipant = participants.find(p => p.local);
+                    // const participants = APP.store.getState()['features/base/participants'] || [];
+                    // const localParticipant = participants.find(p => p.local);
+                    const localParticipant = APP.CommonUtils.getLocalParticipant();
                     console.log('localParticipant', localParticipant)
 
                     room.removeCommand('update-local-ip');
@@ -2470,7 +2471,7 @@ export default {
                     });
                 });
 
-        }, 30000);
+        }, 5000);
 
         room.addCommandListener(
             'update-local-ip',

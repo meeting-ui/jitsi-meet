@@ -1,7 +1,6 @@
 // @flow
 
 // import { StateListenerRegistry } from '../redux';
-import { getCurrentConference } from '../conference';
 import {
     isLocalParticipantModerator, 
     getParticipants
@@ -26,15 +25,8 @@ import { PARTICIPANTS_ORDER_CHANGED, PARTICIPANT_ROLE } from './constants';
  * @returns {void}
  */
 export function sendOrderChangedCommand() { // eslint-disable-line no-unused-vars
-    const state = APP.store.getState();
-    const conference = getCurrentConference(state);
-
+    const conference = APP.CommonUtils.getConference();
     if (!conference) {
-        return;
-    }
-
-    // Only a moderator is allowed to send commands.
-    if (!isLocalParticipantModerator(state)) {
         return;
     }
 
@@ -81,10 +73,11 @@ export function getNewParticipantOrder() {
     return newOrder.join(',');
 }
 
-/**
- * utils that judge if current participant is Moderator
- */
-export function isParticipantModerator() {
-    const state = APP.store.getState();
-    return isLocalParticipantModerator(state);
+export function sortParticipantsByIPsOrder() {
+    const ipsStr = localStorage.getItem('jitsi_user_ips');
+    if (ipsStr) {
+        const ipArr = ipsStr.split(',');
+        
+    }
 }
+

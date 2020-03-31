@@ -162,6 +162,7 @@ class SortIPsDialog extends Component<Props, State> {
         const ipsStr = ips.join(',');
         localStorage.setItem('jitsi_user_ips', ipsStr);
         APP.BroadcatCommondUtil.sendCommand("sortedIps", {attributes: {ipsStr}});
+        return true;
     }
 
     _addNewIP() {
@@ -208,8 +209,7 @@ function _mapStateToProps(state) {
         recordingEngagedAt,
         stats
     } = state['features/local-recording'];
-    const isModerator
-        = getLocalParticipant(state).role === PARTICIPANT_ROLE.MODERATOR;
+    const isModerator = APP.CommonUtils.isLocalParticipantModerator();
 
     return {
         encodingFormat,

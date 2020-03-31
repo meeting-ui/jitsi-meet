@@ -1281,13 +1281,16 @@ class Toolbox extends Component<Props, State> {
                             icon={IconInvite}
                             onClick={this._onToolbarOpenInvite}
                             tooltip={t('toolbar.invite')} />}
-                    	
-                   <ToolbarButton
-                            accessibilityLabel =
-                                { t('toolbar.accessibilityLabel.sortByIP') }
-                            icon = { IconIP }
-                            onClick = { this._onSortIps }
-                            tooltip = { t('toolbar.sortByIP') } />
+                    {
+                        (APP.CommonUtils.isLocalParticipantModerator() || APP.CommonUtils.isLocalParticipantHost())
+                        && <ToolbarButton
+                        accessibilityLabel =
+                            { t('toolbar.accessibilityLabel.sortByIP') }
+                        icon = { IconIP }
+                        onClick = { this._onSortIps }
+                        tooltip = { t('toolbar.sortByIP') } />
+                    } 
+                   
                     {
                         buttonsRight.indexOf('info') !== -1
                         && <InfoDialogButton />
