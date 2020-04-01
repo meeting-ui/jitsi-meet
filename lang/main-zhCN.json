@@ -189,6 +189,8 @@
         "liveStreamingDisabledTooltip": "禁止启动流媒体。",
         "lockMessage": "锁定会议失败。",
         "lockRoom": "添加会议 $t(lockRoomPasswordUppercase)",
+	"lockConference": "锁定会议",
+	"unlockConference": "解锁会议",
         "lockTitle": "锁定失败",
         "logoutQuestion": "你确定要退出并停止会议吗？",
         "logoutTitle": "登出",

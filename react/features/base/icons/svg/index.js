@@ -75,3 +75,4 @@ export { default as IconVideoQualityHD } from './HD.svg';
 export { default as IconVideoQualityLD } from './LD.svg';
 export { default as IconVideoQualitySD } from './SD.svg';
 export { default as IconVolume } from './volume.svg';
+export { default as IconIP } from './ip.svg';

@@ -11,6 +11,10 @@ import remoteControl from './modules/remotecontrol/RemoteControl';
 import translation from './modules/translation/translation';
 import UI from './modules/UI/UI';
 
+import BroadcatCommondUtil from './BroadcastCommandUtil';
+
+import CommonUtils from './CommonUtils';
+
 window.APP = {
     API,
     conference,
@@ -34,7 +38,9 @@ window.APP = {
     keyboardshortcut,
     remoteControl,
     translation,
-    UI
+    UI,
+    BroadcatCommondUtil,
+    CommonUtils
 };
 
 // TODO The execution of the mobile app starts from react/index.native.js.

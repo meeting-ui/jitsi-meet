@@ -123,7 +123,7 @@ class ConnectionIndicator extends AbstractConnectionIndicator<Props, State> {
      */
     constructor(props: Props) {
         super(props);
-
+        console.log('ConnectionIndicator ---------- ', props)
         this.state = {
             autoHideTimeout: undefined,
             showIndicator: false,

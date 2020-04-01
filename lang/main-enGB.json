@@ -394,6 +394,9 @@
         "stop": "Stop Recording",
         "yes": "Yes"
     },
+    "sortIps": {
+        "dialogTitle": "Sort IPs"
+    },
     "lockRoomPassword": "password",
     "lockRoomPasswordUppercase": "Password",
     "me": "me",
