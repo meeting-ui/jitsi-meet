@@ -9,7 +9,7 @@ import { connect } from '../../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../../base/toolbox';
 import { MuteEveryoneDialog } from '../../../remote-video-menu';
 import { NOTIFICATION_TIMEOUT, showNotification } from '../../../notifications';
-import { setPassword } from '../../../base/conference';
+import { setPassword } from '../../../base/conference'; 
 
 type Props = AbstractButtonProps & {
 
@@ -122,7 +122,7 @@ function _mapStateToProps(state: Object, ownProps: Props) {
 
 
     const localParticipant = getLocalParticipant(state);
-    const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR || localParticipant.role === PARTICIPANT_ROLE.HOST;
+    const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR || localParticipant.isHost;
     const { visible } = ownProps;
 
     return {
