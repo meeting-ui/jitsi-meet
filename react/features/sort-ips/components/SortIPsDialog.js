@@ -13,6 +13,7 @@ import {
 import { connect } from '../../base/redux';
 // import SortableList from './sortable-list';
 import { ReactSortable } from 'react-sortablejs';
+import { sortParticipantsByIPsOrder } from '../../base/participants/changeOrder'
 
 
 /**
@@ -162,6 +163,8 @@ class SortIPsDialog extends Component<Props, State> {
         const ipsStr = ips.join(',');
         localStorage.setItem('jitsi_user_ips', ipsStr);
         APP.BroadcatCommondUtil.sendCommand("sortedIps", {attributes: {ipsStr}});
+        // sort participants
+        sortParticipantsByIPsOrder();
         return true;
     }
 

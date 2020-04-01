@@ -14,6 +14,8 @@ import UIEvents from './service/UI/UIEvents';
 import UIUtil from './modules/UI/util/UIUtil';
 import { createTaskQueue } from './modules/util/helpers';
 import * as JitsiMeetConferenceEvents from './ConferenceEvents';
+import { sortParticipantsByIPsOrder } from './react/features/base/participants/changeOrder'
+
 
 import {
     createDeviceChangedEvent,
@@ -1941,6 +1943,10 @@ export default {
 
             logger.log(`USER ${id} connnected:`, user);
             APP.UI.addUser(user);
+            if (APP.CommonUtils.isLocalParticipantModeratorOrHost()) {
+                // sort by ip
+                sortParticipantsByIPsOrder();
+            }
         });
 
         room.on(JitsiConferenceEvents.USER_LEFT, (id, user) => {
@@ -2194,12 +2200,10 @@ export default {
 
         room.addCommandListener(PARTICIPANTS_ORDER_CHANGED,
             (data, id) => {
-                changeParticipantOrderAfterHostChanged(data.attributes.newOrder, id)
+                changeParticipantOrderAfterHostChanged(data.attributes, id)
             });
         
         room.addCommandListener(APP.BroadcatCommondUtil.COMMON_COMMAND_TYPE, (data, form) => {
-            console.log(data)
-            console.log(form)
             APP.BroadcatCommondUtil.listenerCallback(data, form);
         });
 
@@ -2471,13 +2475,17 @@ export default {
                     });
                 });
 
-        }, 5000);
+        }, 30000);
 
         room.addCommandListener(
             'update-local-ip',
             ({ attributes }, id) => {
                 const participant = APP.CommonUtils.getParticipantById(id);
                 participant.ip = attributes.ip;
+                if (APP.CommonUtils.isLocalParticipantModeratorOrHost()) {
+                    // sort by ip
+                    sortParticipantsByIPsOrder();
+                }
             });
 
         room.addCommandListener(

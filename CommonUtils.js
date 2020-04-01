@@ -69,10 +69,27 @@ CommonUtils.isLocalParticipantModerator = function() {
 }
 
 /**
+ * Weather current participant is Moderator or Host
+ */
+CommonUtils.isLocalParticipantModeratorOrHost = function() {
+    const localParticipant = CommonUtils.getLocalParticipant();
+    return localParticipant.role === CommonUtils.PARTICIPANT_ROLE.MODERATOR || localParticipant.isHost;
+}
+
+/**
  * Weather this participant is Moderator
  */
 CommonUtils.isThisParticipantModerator = function(participant) {
     return participant.role === CommonUtils.PARTICIPANT_ROLE.MODERATOR;
+}
+
+/**
+ * Weather this participant is Moderator
+ */
+CommonUtils.getParticipantByIP = function(IP) {
+    const participants = CommonUtils.getParticipants();
+    const participant = participants.find(p => p.ip === IP);
+    return participant;
 }
 
 /**
