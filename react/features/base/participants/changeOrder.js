@@ -1,28 +1,11 @@
-// @flow
-
-// import { StateListenerRegistry } from '../redux';
 import {
-    isLocalParticipantModerator, 
     getParticipants
 } from '../participants';
 
 import { PARTICIPANTS_ORDER_CHANGED, PARTICIPANT_ROLE } from './constants';
 
 /**
- * Subscribes to changes to the Follow Me setting for the local participant to
- * notify remote participants of current user interface status.
- */
-// StateListenerRegistry.register(
-//     /* selector */ state => state['features/base/conference'].orderChanged,
-//     /* listener */ (newOrder, store) => _sendOrderChangedCommand(newOrder, store));
-
-/**
- * Sends the follow-me command, when a local property change occurs.
- *
- * @param {*} newOrder - The changed selected value from the selector.
- * @param {Object} store - The redux store.
- * @private
- * @returns {void}
+ * send new order to every one
  */
 export function sendOrderChangedCommand() { // eslint-disable-line no-unused-vars
     const conference = APP.CommonUtils.getConference();
@@ -37,8 +20,16 @@ export function sendOrderChangedCommand() { // eslint-disable-line no-unused-var
     );
 }
 
-export function changeParticipantOrderAfterHostChanged(newOrder) {
-    const state = APP.store.getState();
+/**
+ * Host change the order and the order will send to everyone, when receive the new order, execute this method
+ * @param {*} newOrder 
+ */
+export function changeParticipantOrderAfterHostChanged(newOrder, hostId) {
+    const localParticipantId = APP.CommonUtils.getLocalParticipantId();
+    // if broadcast to itself, just don't do any thing.
+    if (localParticipantId == hostId) {
+        return;
+    }
     const newOrderArr = newOrder.split(',');
     // const allParticipants = $('#filmstripRemoteVideosContainer > span');
 
@@ -52,16 +43,21 @@ export function changeParticipantOrderAfterHostChanged(newOrder) {
     }
 
     // Moderator should list at the last one position
-    const participants = getParticipants(state)
-    participants.forEach(participant => {
-        if (participant.role === PARTICIPANT_ROLE.MODERATOR) {
-            $('#participant_' + participant.id).insertBefore('#localVideoTileViewContainer');
-        }
-    });
-    console.log('participants', participants)
+    $('#participant_' + hostId).insertBefore('#localVideoTileViewContainer');
 }
 
+/**
+ * get order str
+ */
 export function getNewParticipantOrder() {
+    let newOrder = getParticipantOrderArray();
+    return newOrder.join(',');
+}
+
+/**
+ * get order array
+ */
+function getParticipantOrderArray() {
     const allParticipants = $("#filmstripRemoteVideosContainer > span");
     let newOrder = [];
 
@@ -69,15 +65,20 @@ export function getNewParticipantOrder() {
         const participant = allParticipants[i]
         newOrder.push(participant.id);
     }
-
-    return newOrder.join(',');
+    return newOrder;
 }
 
 export function sortParticipantsByIPsOrder() {
     const ipsStr = localStorage.getItem('jitsi_user_ips');
     if (ipsStr) {
+        const sortByIPOrder = [];
+        const participantsOrder = getParticipantOrderArray();
         const ipArr = ipsStr.split(',');
-        
+        for (let i = 0; i < ipArr.length; i++) {
+            const eachIp = ipArr[i];
+            // use IP to find participant
+
+        }
     }
 }
 

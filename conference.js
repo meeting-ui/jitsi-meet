@@ -2193,8 +2193,8 @@ export default {
             });
 
         room.addCommandListener(PARTICIPANTS_ORDER_CHANGED,
-            (data, from) => {
-                changeParticipantOrderAfterHostChanged(data.attributes.newOrder)
+            (data, id) => {
+                changeParticipantOrderAfterHostChanged(data.attributes.newOrder, id)
             });
         
         room.addCommandListener(APP.BroadcatCommondUtil.COMMON_COMMAND_TYPE, (data, form) => {
@@ -2476,29 +2476,19 @@ export default {
         room.addCommandListener(
             'update-local-ip',
             ({ attributes }, id) => {
-                console.log(attributes);
-                console.log(id);
+                const participant = APP.CommonUtils.getParticipantById(id);
+                participant.ip = attributes.ip;
             });
-
 
         room.addCommandListener(
             'SET_AS_HOST',
             ({ attributes }, id) => {
                 //room id and attributes in SetHostButton.js
-                console.log(attributes);
-
-                const participants = APP.store.getState()['features/base/participants'] || [];
-                const localParticipant = participants.find(p => p.local);
-                console.log(localParticipant)
-
+                const localParticipant = APP.CommonUtils.getLocalParticipant();
                 if (localParticipant.id === attributes.participantID) { // is self , set as host
                     localParticipant.isHost = true;
-                    console.log(localParticipant.isHost)
-
                 }
-
             });
-
 
     },
 

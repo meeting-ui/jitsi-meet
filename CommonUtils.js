@@ -34,11 +34,30 @@ CommonUtils.getLocalParticipantId = function() {
 }
 
 /**
+ * get current participant ID
+ */
+CommonUtils.getParticipantById = function(participantId) {
+    const participants = CommonUtils.getParticipants();
+    const participant = participants.find(p => p.id === participantId);
+    return participant;
+}
+
+
+/**
  * Weather current participant is Host ?
  */
 CommonUtils.isLocalParticipantHost = function() {
     const localParticipant = CommonUtils.getLocalParticipant();
     return localParticipant.isHost;
+}
+
+/**
+ * get host
+ */
+CommonUtils.getHostParticipant = function() {
+    const participants = CommonUtils.getParticipants();
+    const participant = participants.find(p => p.isHost);
+    return participant;
 }
 
 /**
