@@ -20,7 +20,7 @@ import LocalVideo from './LocalVideo';
 
 import Sortable from 'sortablejs';
 
-import { sendOrderChangedCommand, isParticipantModerator } from '../../../react/features/base/participants/changeOrder';
+import { sendOrderChangedCommand, setManualChangedOrder } from '../../../react/features/base/participants/changeOrder';
 
 const remoteVideos = {};
 let localVideoThumbnail = null;
@@ -309,6 +309,7 @@ const VideoLayout = {
                 animation: 150,
                 onChange: function(/**Event*/evt) {
                     sendOrderChangedCommand();
+                    setManualChangedOrder();
                 }
               });
         }
